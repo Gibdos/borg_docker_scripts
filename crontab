@@ -1,0 +1,6 @@
+# Run the borg backups daily with crontab and save the log to /var/log/borg/
+
+*/5 * * * * docker exec -u www-data nextcloud php cron.php
+0 0 * * *   /root/borg/docker-compose.sh >> /var/log/borg/docker-compose.log 2>&1
+10 0 * * *  /root/borg/mailcow-dockerized.sh >> /var/log/borg/mailcow.log 2>&1
+20 0 * * *  /root/borg/nextcloud.sh >> /var/log/borg/nextcloud.log 2>&1
